@@ -17,7 +17,7 @@ def checkHorizontal(game_dict,x):
     return game_dict[x] == game_dict[x+1] and game_dict[x] == game_dict[x+2] if not game_dict[x] == "" else False
 
 def checkDescending(game_dict,x):
-    return game_dict[x] == game_dict[x+4] and game_dict[x+1] == game_dict[x+8] if not game_dict[x] == "" else False
+    return game_dict[x] == game_dict[x+4] and game_dict[x] == game_dict[x+8] if not game_dict[x] == "" else False
 
 def checkAscending(game_dict,x):
     return game_dict[x] == game_dict[x+2] and game_dict[x] == game_dict[x+4] if not game_dict[x] == "" else False
@@ -144,14 +144,14 @@ while not exited:
         game_dict[pos] = Player
         updateGame(game_dict,print_dict)
         game_over = checkBoard(game_dict)
-        if game_over and turn < 9:
+        if game_over:
             printGame(print_dict)
             print("Player "+Player+" is the winner!")
-        elif not game_over and turn > 9:
+        elif turn > 9:
             printGame(print_dict)
             print("TIE GAME NO WINNER")
+            game_over = True
         else:    
-            
             printGame(print_dict)
             turn += 1
     answer = input("Would you like to Play again? ")
