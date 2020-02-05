@@ -22,7 +22,7 @@ def checkHorizontal(game_dict,x):
     return game_dict[x] == game_dict[x+1] and game_dict[x] == game_dict[x+2] if not game_dict[x] == "" else False
 
 def checkDescending(game_dict,x):
-    return game_dict[x] == game_dict[x+4] and game_dict[x+1] == game_dict[x+8] if not game_dict[x] == "" else False
+    return game_dict[x] == game_dict[x+4] and game_dict[x] == game_dict[x+8] if not game_dict[x] == "" else False
 
 def checkAscending(game_dict,x):
     return game_dict[x] == game_dict[x+2] and game_dict[x] == game_dict[x+4] if not game_dict[x] == "" else False
@@ -176,22 +176,33 @@ while not exited:
     turn = 0
     while not game_over:
         Player =  "O" if Player != "O" else "X"
+        #get the position to be played
         pos = checkIfInt("Player "+Player+" please choose a position: ")
+        #make sure the position is empty
         while not game_dict[pos] == "":
             pos = checkIfInt("Choose a position that isnt populated: ")
+        #if all is ok then we say that the position is now the Playes
         game_dict[pos] = Player
+        #now we update the print_dict to reflect these changes
         updateGame(game_dict,print_dict)
+        #check to see if there is a winner
         game_over = checkBoard(game_dict)
-        if game_over and turn < 9:
-            printGame(print_dict)
-            print("Player "+Player+" is the winner!")
-        elif not game_over and turn > 9:
-            printGame(print_dict)
-            print("TIE GAME NO WINNER")
-        else:    
-            
+        #if there is a winner
+        if game_over:
+          #print the game and the winner
+          printGame(0000)
+          print("Player "+0000+" is the winner!")
+        elif turn > 9:
+          #print the game, and that there is a tie
+          printGame(0000)
+          print("TIE GAME NO WINNER")
+          #set the game to over
+          game_over = 0000
+        else:
+          #if none true, then next turn    
             printGame(print_dict)
             turn += 1
+    #check to see if player wants to play again
     answer = input("Would you like to Play again? ")
     answer = answer.upper()
     while answer[0] != "Y" and answer[0] != "N":
